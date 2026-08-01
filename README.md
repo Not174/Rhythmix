@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rhythmix 🎵
 
-## Getting Started
+A modern, full-featured music streaming & playback web application built with **Next.js**, **React**, **TypeScript**, **Tailwind CSS**, and **Supabase**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Music Streaming & Audio Player**: Persistent bottom audio player with Play, Pause, Next/Previous track, seek bar, volume control, and shuffle/repeat options.
+- **Dedicated Player View**: Immersive song view with animated vinyl disk cover, audio frequency visualizer, lyric synchronization/scrolling, and queue management.
+- **Song Upload & Storage**: Seamless song uploading (Audio file + Cover Art) powered by Supabase Storage.
+- **Categorization & Filtering**: Filter music by genres (Pop, Rock, Hip-Hop, Lo-Fi, Electronic, Jazz, Classical, Ambient, etc.).
+- **Search**: Real-time search across tracks, artists, and albums.
+- **Dark / Light Theme**: Theme toggle for custom listening experiences.
+- **Responsive Layout**: Designed for seamless playback on dynamic displays.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Getting Started
 
-## Learn More
+Follow these steps to run Rhythmix locally on your machine.
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Node.js](https://nodejs.org/) (v18 or higher recommended)
+- `npm` or `yarn` / `pnpm` / `bun`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+### 🛠️ Installation & Setup
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/Not174/Rhythmix.git
+   cd Rhythmix/rhythmix-app
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment Variables**
+   Create a `.env.local` file inside the `rhythmix-app` directory and add your Supabase credentials:
+
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=https://your-supabase-project.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+   ```
+
+4. **Setup Storage Buckets (Optional/Supabase)**
+   If you are configuring a fresh Supabase instance, run the bucket setup script:
+   ```bash
+   node setup-buckets.js
+   ```
+
+5. **Run the Development Server**
+   ```bash
+   npm run dev
+   ```
+
+6. **Open in Browser**
+   Navigate to [http://localhost:3000](http://localhost:3000) to start using Rhythmix!
+
+---
+
+## 📖 How to Use the App
+
+1. **Explore & Listen**:
+   - Browse songs on the **Home** page or filter by genre under **Categories**.
+   - Click on any song card or track item to start instant playback.
+2. **Control Playback**:
+   - Use the sticky bottom player bar to pause, skip, scrub audio progress, or adjust volume.
+   - Click on the song title or album cover in the bottom bar to open the **Immersive Player View**.
+3. **Upload Music**:
+   - Click **Upload Song** in the sidebar.
+   - Provide the song title, artist, album, genre, audio file (`.mp3`, `.wav`), and cover image (`.png`, `.jpg`).
+   - Click **Upload** to publish your song to the library!
+4. **Queue & Lyrics**:
+   - Inside the main player page, view synchronized lyrics (if available) and adjust the upcoming playback queue.
+
+---
+
+## 🛠️ Built With
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS & Lucide Icons
+- **Backend & Storage**: Supabase
+- **State & Theme**: React Context & next-themes
