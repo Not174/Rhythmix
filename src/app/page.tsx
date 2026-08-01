@@ -43,9 +43,9 @@ export default function HomePage() {
   };
 
   return (
-    <div className="px-4 py-8">
+    <div className="px-4 sm:px-6 py-6 sm:py-8">
       {/* Page header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 sm:mb-8">
         <div>
           <h1
             className={`text-3xl font-bold mb-2 ${
@@ -88,7 +88,7 @@ export default function HomePage() {
 
       {/* Loading skeleton */}
       {loading && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {Array.from({ length: 8 }).map((_, i) => (
             <div
               key={i}
@@ -102,7 +102,7 @@ export default function HomePage() {
 
       {/* Category grid */}
       {!loading && categories.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {categories.map((cat, i) => (
             <div
               key={cat.id}

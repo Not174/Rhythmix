@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
@@ -12,6 +12,7 @@ export default function LayoutShell({ children }: { children: React.ReactNode })
   const { theme } = useTheme();
   const { currentSong } = useAudio();
   const pathname = usePathname();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const isPlayerPage = pathname.startsWith("/player/");
 
@@ -27,13 +28,30 @@ export default function LayoutShell({ children }: { children: React.ReactNode })
         }
       `}
     >
-      <Sidebar />
-      <div className={`ml-60 flex flex-col ${isPlayerPage ? "h-screen overflow-hidden" : "min-h-screen"}`}>
-        {!isPlayerPage && <Header />}
-        <main className={`flex-1 ${isPlayerPage ? "overflow-hidden" : ""} ${currentSong && !isPlayerPage ? "pb-24" : !isPlayerPage ? "pb-8" : ""}`}>
+      {/* Mobile overlay backdrop */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 z-30 bg-black/50 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+
+      {/* Main content — offset by sidebar on md+ */}
+      <div className={`md:ml-60 flex flex-col ${isPlayerPage ? "h-screen overflow-hidden" : "min-h-screen"}`}>
+        {!isPlayerPage && (
+          <Header onMenuClick={() => setSidebarOpen(true)} />
+        )}
+        <main
+          className={`flex-1 ${isPlayerPage ? "overflow-hidden" : ""} ${
+            currentSong && !isPlayerPage ? "pb-24" : !isPlayerPage ? "pb-8" : ""
+          }`}
+        >
           {children}
         </main>
       </div>
+
       {!isPlayerPage && <MiniPlayer />}
     </div>
   );

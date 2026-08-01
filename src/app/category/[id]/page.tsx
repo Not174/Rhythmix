@@ -49,7 +49,7 @@ export default function CategoryPage() {
   };
 
   return (
-    <div className="px-8 py-8">
+    <div className="px-4 sm:px-6 md:px-8 py-6 sm:py-8">
       {/* Back button */}
       <button
         onClick={() => router.push("/")}
@@ -67,7 +67,7 @@ export default function CategoryPage() {
 
       {/* Category header */}
       {category && (
-        <div className="flex items-center gap-6 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-6 sm:mb-8">
           <div
             className="w-24 h-24 rounded-2xl flex items-center justify-center text-5xl shadow-xl"
             style={{ backgroundColor: category.color }}

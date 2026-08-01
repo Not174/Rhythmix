@@ -26,7 +26,7 @@ export default function MiniPlayer() {
   return (
     <div
       className={`
-        fixed bottom-0 left-60 right-0 z-50 h-20 flex items-center
+        fixed bottom-0 left-0 right-0 md:left-60 z-50 h-20 flex items-center
         transition-all duration-300 border-t animate-slide-up
         ${
           theme === "dark"
@@ -44,7 +44,7 @@ export default function MiniPlayer() {
         />
       </div>
 
-      <div className="flex items-center justify-between w-full px-6">
+      <div className="flex items-center justify-between w-full px-4 md:px-6">
         {/* Song info */}
         <button
           onClick={() => router.push(`/player/${currentSong.id}`)}
@@ -54,11 +54,11 @@ export default function MiniPlayer() {
             <img
               src={currentSong.cover_url}
               alt={currentSong.title}
-              className="w-12 h-12 rounded-lg object-cover shadow-md"
+              className="w-10 h-10 md:w-12 md:h-12 rounded-lg object-cover shadow-md flex-shrink-0"
             />
           ) : (
             <div
-              className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+              className={`w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
                 theme === "dark" ? "bg-dark-600" : "bg-gray-100"
               }`}
             >
@@ -86,11 +86,11 @@ export default function MiniPlayer() {
         </button>
 
         {/* Controls */}
-        <div className="flex items-center gap-4">
-          {/* Previous */}
+        <div className="flex items-center gap-2 md:gap-4">
+          {/* Previous — hidden on very small screens */}
           <button
             onClick={playPrevious}
-            className={`w-8 h-8 flex items-center justify-center rounded-full cursor-pointer transition-colors ${
+            className={`hidden sm:flex w-8 h-8 items-center justify-center rounded-full cursor-pointer transition-colors ${
               theme === "dark"
                 ? "text-gray-400 hover:text-white"
                 : "text-gray-500 hover:text-gray-900"
@@ -150,7 +150,7 @@ export default function MiniPlayer() {
             `}
             title="Cancel playing music"
           >
-            <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>

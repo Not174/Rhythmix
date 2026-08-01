@@ -25,12 +25,23 @@ const MusicIcon = () => (
   </svg>
 );
 
+const CloseIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+  </svg>
+);
+
 const navItems = [
   { href: "/", label: "Home", icon: <HomeIcon /> },
   { href: "/upload", label: "Upload", icon: <UploadIcon /> },
 ];
 
-export default function Sidebar() {
+interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
   const { theme } = useTheme();
 
@@ -38,7 +49,8 @@ export default function Sidebar() {
     <aside
       className={`
         fixed left-0 top-0 z-40 h-full w-60 flex flex-col
-        transition-colors duration-300 border-r
+        transition-all duration-300 ease-in-out border-r
+        ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
         ${
           theme === "dark"
             ? "bg-dark-900/95 border-white/5 text-white"
@@ -47,14 +59,26 @@ export default function Sidebar() {
       `}
       style={{ backdropFilter: "blur(20px)" }}
     >
-      {/* Logo */}
+      {/* Logo + close button on mobile */}
       <div className="flex items-center gap-3 px-6 py-6">
         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 flex items-center justify-center shadow-lg">
           <MusicIcon />
         </div>
-        <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-brand-500 to-accent-500 bg-clip-text text-transparent">
+        <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-brand-500 to-accent-500 bg-clip-text text-transparent flex-1">
           Rhythmix
         </span>
+        {/* Close button — only visible on mobile */}
+        <button
+          onClick={onClose}
+          className={`md:hidden p-1 rounded-lg transition-colors ${
+            theme === "dark"
+              ? "text-gray-400 hover:text-white hover:bg-white/10"
+              : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+          }`}
+          aria-label="Close sidebar"
+        >
+          <CloseIcon />
+        </button>
       </div>
 
       {/* Navigation */}
@@ -73,6 +97,7 @@ export default function Sidebar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  onClick={onClose}
                   className={`
                     flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium
                     transition-all duration-200

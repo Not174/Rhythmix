@@ -136,7 +136,7 @@ export default function UploadPage() {
   }`;
 
   return (
-    <div className="px-8 py-8 max-w-2xl mx-auto">
+    <div className="px-4 sm:px-6 md:px-8 py-6 sm:py-8 max-w-2xl mx-auto">
       <h1
         className={`text-3xl font-bold mb-2 ${
           theme === "dark" ? "text-white" : "text-gray-900"

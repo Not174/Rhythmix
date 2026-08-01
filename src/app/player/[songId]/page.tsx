@@ -58,7 +58,7 @@ export default function PlayerPage() {
   return (
     <div className="h-full flex flex-col justify-between overflow-hidden relative">
       {/* Top Bar with Back Button */}
-      <div className="px-8 pt-6 pb-2 flex items-center justify-between z-10">
+      <div className="px-4 sm:px-8 pt-4 sm:pt-6 pb-2 flex items-center justify-between z-10">
         <button
           onClick={() => router.back()}
           className={`flex items-center gap-2 text-sm font-medium cursor-pointer transition-colors px-3 py-1.5 rounded-lg ${
