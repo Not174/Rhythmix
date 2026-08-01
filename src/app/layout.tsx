@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { AudioProvider } from "@/context/AudioContext";
@@ -9,6 +9,13 @@ export const metadata: Metadata = {
   description:
     "Rhythmix is a modern music streaming platform. Discover, upload, and play your favorite songs with a premium listening experience.",
   keywords: ["music", "streaming", "rhythmix", "bangla music", "audio player"],
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({

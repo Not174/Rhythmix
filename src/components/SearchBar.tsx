@@ -68,7 +68,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div ref={wrapperRef} className="relative w-full max-w-xl">
+    <div ref={wrapperRef} className="relative flex-1 min-w-0 max-w-xl">
       {/* Search input row */}
       <div
         className={`
@@ -104,16 +104,16 @@ export default function SearchBar() {
           type="text"
           value={query}
           onChange={(e) => handleSearch(e.target.value)}
-          placeholder={mode === "name" ? "Search by song name..." : "Search by lyrics..."}
+          placeholder={mode === "name" ? "Search songs..." : "Search lyrics..."}
           className={`
-            flex-1 py-2.5 pr-2 bg-transparent outline-none text-sm
+            flex-1 min-w-0 py-2.5 pr-2 bg-transparent outline-none text-sm
             ${theme === "dark" ? "text-white placeholder-gray-500" : "text-gray-900 placeholder-gray-400"}
           `}
         />
 
-        {/* Mode switcher */}
+        {/* Mode switcher — hidden on xs, visible from sm */}
         <div
-          className={`flex items-center border-l mr-1 ${
+          className={`hidden sm:flex items-center border-l mr-1 ${
             theme === "dark" ? "border-white/10" : "border-gray-200"
           }`}
         >
