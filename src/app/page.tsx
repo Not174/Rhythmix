@@ -12,6 +12,7 @@ export default function HomePage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [editingCategoryId, setEditingCategoryId] = useState<string | null>(null);
 
   const fetchCategories = async () => {
     try {
@@ -109,7 +110,13 @@ export default function HomePage() {
               className="animate-fade-in"
               style={{ animationDelay: `${i * 60}ms` }}
             >
-              <CategoryCard category={cat} onDeleted={fetchCategories} />
+              <CategoryCard
+                category={cat}
+                onDeleted={fetchCategories}
+                isEditing={editingCategoryId === cat.id}
+                onEditStart={() => setEditingCategoryId(cat.id)}
+                onEditClose={() => setEditingCategoryId(null)}
+              />
             </div>
           ))}
         </div>

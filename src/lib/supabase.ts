@@ -93,18 +93,13 @@ export async function getCategoryById(id: string): Promise<Category | null> {
   return normCategory(data);
 }
 
-export async function updateCategoryColor(id: string, color: string) {
+export async function updateCategory(
+  id: string,
+  updates: { name?: string; color?: string; icon?: string }
+) {
   const { error } = await supabase
     .from("categories")
-    .update({ color })
-    .eq("id", id);
-  if (error) throw error;
-}
-
-export async function updateCategoryName(id: string, name: string) {
-  const { error } = await supabase
-    .from("categories")
-    .update({ name })
+    .update(updates)
     .eq("id", id);
   if (error) throw error;
 }
